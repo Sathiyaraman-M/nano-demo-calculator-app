@@ -15,3 +15,9 @@ out/
 .factorypath
 *newman/
 .vscode/
+
+
+bin/
+obj/
+.vscode/
+.idea/

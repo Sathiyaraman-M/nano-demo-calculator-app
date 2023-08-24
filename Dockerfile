@@ -1,16 +1,14 @@
-FROM gradle:7.2.0-jdk17 as builder
-WORKDIR /home/app
+FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
 
+ENV ASPNETCORE_URLS=http://+:8080
+
+WORKDIR /SahajApp
+COPY ["SahajApp.csproj", ""]
+RUN dotnet restore "./SahajApp.csproj"
 COPY . .
 
-RUN gradle buildLayers
+WORKDIR "/SahajApp/."
+RUN dotnet build "SahajApp.csproj" -c Release -o /app/build
 
-FROM openjdk:17-alpine
-COPY --from=builder /home/app/build/docker/main/layers/libs /home/app/libs
-COPY --from=builder /home/app/build/docker/main/layers/classes /home/app/classes
-COPY --from=builder /home/app/build/docker/main/layers/resources /home/app/resources
-COPY --from=builder /home/app/build/docker/main/layers/application.jar /home/app/application.jar
-
-EXPOSE 8080
-
-ENTRYPOINT ["java", "-jar", "/home/app/application.jar"]
+WORKDIR /app/build
+ENTRYPOINT ["dotnet", "SahajApp.dll"]
