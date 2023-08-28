@@ -10,5 +10,7 @@ COPY ["SahajApp/.", ""]
 WORKDIR "/SahajApp/."
 RUN dotnet build "SahajApp.csproj" -c Release -o /app/build
 
+EXPOSE 8080
+
 WORKDIR /app/build
 ENTRYPOINT ["dotnet", "SahajApp.dll"]
