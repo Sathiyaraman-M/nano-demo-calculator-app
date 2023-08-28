@@ -15,7 +15,7 @@ out/
 .factorypath
 *newman/
 .vscode/
-
+node_modules/
 
 bin/
 obj/
