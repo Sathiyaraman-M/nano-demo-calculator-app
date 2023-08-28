@@ -1,5 +1,4 @@
 var builder = WebApplication.CreateBuilder(args);
-builder.WebHost.UseUrls("http://localhost:8080/");
 var app = builder.Build();
 
 app.MapGet("/calculator/greeting", () => "Hello World!");

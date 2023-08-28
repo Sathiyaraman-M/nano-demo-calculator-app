@@ -9,6 +9,8 @@ services:
         limits:
           cpus: ${web_app_cpu:-2}
           memory: ${web_app_memory:-4G}
+    ports:
+      - "8080:8080"
   web-app-health:
     image: giantswarm/tiny-tools:latest
     entrypoint: sleep infinity
