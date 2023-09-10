@@ -13,16 +13,16 @@ class MathController {
 
     @Get("/greeting")
     fun greeting(): HttpResponse<String> {
-        return HttpResponse.ok("")
+        return HttpResponse.ok("Hello World!")
     }
 
     @Post("/add", produces = [MediaType.APPLICATION_JSON])
-    fun add(): HttpResponse<String> {
-        return HttpResponse.ok("")
+    fun add(first: Int, second: Int): HttpResponse<String> {
+        return HttpResponse.ok("{\"result\": ${first + second}}")
     }
 
     @Post("/subtract", produces = [MediaType.APPLICATION_JSON])
-    fun subtract(): HttpResponse<String> {
-        return HttpResponse.ok("")
+    fun subtract(first: Int, second: Int): HttpResponse<String> {
+        return HttpResponse.ok("{\"result\": ${first - second}}")
     }
 }
